@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/rubric_css.css' %}" />
+{% endblock %}
+{% block js %}
+
+<script type="text/javascript" src="{% static 'js/rubric_js.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="rubric_main" id={{composer.rubric.id}}>
+    {% autoescape off %}
+    {{composer.compose_back}}
+    {% endautoescape %}
+<div class="rubric_list_container">
+    {% autoescape off %}
+    {{composer.compose_rubric_list}}
+    {% endautoescape %}
+</div>
+<div class="article_list_container">
+    {% autoescape off %}
+    {{composer.compose_article_list}}
+    {% endautoescape %}
+</div>
+</div>
+{% endblock %}

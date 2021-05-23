@@ -1,0 +1,47 @@
+body{ font-family: Verdana;}
+h1{color:navy;}
+p{padding-left:7px;}
+.article_content{
+    width: 65%;
+    margin-left:20%;
+    min-width: 400px;
+    background-color: #E0FFFF;
+}
+.article_container{
+    width: 96%;
+    border: 4px double black; /* Параметры границы */
+    background-color: #E0FFFF; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    border-radius: 20px 10px;
+}
+.comments_container{
+    width: calc(100% - 20px);
+    padding-left: 4%;
+
+    /*border: 3px groove black;
+    background-color: #FFF8DC;
+    border-radius: 5px 10px;*/
+}
+.comment_quote{
+    border: 1px groove black;
+    background-color: #FFF8DC;
+    border-radius: 5px 10px;
+    margin: 10px;
+}
+.all_comments{
+    width: 88%;
+    padding 20px;
+}
+.back_rubric{
+    padding: 4px;
+}
+.quoute_text{
+    background-color: white;
+    margin: 10px;
+    width: calc(100% - 20px);
+    min-height: 40px;
+}
+
+.fff{
+    border: 1px
+}

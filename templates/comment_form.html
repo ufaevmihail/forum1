@@ -1,0 +1,10 @@
+<form action='/topic/commentform/' class='lmao' method="post" >
+      {% csrf_token %}
+    <div class="form_container">
+        <p>{{form.comment_field}}</p>
+        <input type="submit" value="отправить" />
+        <input type="hidden" name="parent_class" value={{class_}}>
+        <input type="hidden" name="parent_id" value={{id}}>
+        <input type ="hidden" name="comment_form" value="ff">
+    </div>
+</form>

@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/topic_css.css' %}" />
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{% static 'js/topic_js.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class = 'article_content'>
+
+<div class='article_container'>
+    {% autoescape off %}
+    {{comp.compose_back }}
+    {{ comp.compose_article }}
+    {% endautoescape %}
+</div>
+<div class="all_comments">
+    {% autoescape off %}
+    {{ comp.compose_comments }}
+    {% endautoescape %}
+</div>
+</div>
+{% endblock %}

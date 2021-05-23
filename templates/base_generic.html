@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{% static 'css/base_css1.css' %}" />
+  {% block css %}
+  {% endblock %}
+  <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+  <script type="text/javascript" src="{% static 'js/base_js1.js' %}"></script>
+  {% block js %} {% endblock %}
+  {% block title %}<title>Local Library</title>{% endblock %}
+</head>
+
+<body>
+  <div>
+    {% if user.is_authenticated %}
+      <p>Welcome, {{user.username}}</p>
+      <form method="post">
+        {% csrf_token %}
+        <input type ="hidden" name="logout" value="logout">
+        <input type="submit" value="logout" />
+      </form>
+    {% else %}
+      <form method="post" >
+      {% csrf_token %}
+      <table>
+
+      <tr>
+        <td>{{ request.login_form.username.label_tag }}</td>
+        <td>{{ request.login_form.username }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ request.login_form.password.label_tag }}</td>
+        <td>{{ request.login_form.password }}</td>
+      </tr>
+      </table>
+        {%if request.not_found %}
+          <p>неверные логин/пароль</p>
+        {% endif %}
+      <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type ="hidden" name="is_top_login_form" value="ff">
+
+      </form>
+      {# Assumes you setup the password_reset view in your URLconf #}
+      <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    {% endif %}
+  </div>
+  {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+  {% block content %}<!-- default content text (typically empty) -->{% endblock %}
+</body>
+</html>

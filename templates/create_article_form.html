@@ -1,0 +1,10 @@
+<form action='/rubric/createchetotam/{{id}}' class='lmao' method="post" >
+      {% csrf_token %}
+    <div class="form_container">
+        <p>{{form.article_name}}</p>
+        <p>{{form.comment_field}}</p>
+        <input type="submit" value="отправить" >
+        <!--<input type="hidden" name="class_" value={{class}}>-->
+        <input type ="hidden" name="create_form" value="{{class}}">
+    </div>
+</form>
