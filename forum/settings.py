@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'i_6es$4a1jef-ortgn$&s4)*kcqurp
 #DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['forum1967.herokuapp.com']
 '''ROOT = os.path.abspath(os.path.dirname(__file__))   ##
 path = lambda *args: os.path.join(ROOT, *args)      ##
 MEDIA_ROOT = path('static/')                        ##
