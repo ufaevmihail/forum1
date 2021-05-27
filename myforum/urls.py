@@ -15,5 +15,8 @@ urlpatterns = [
     url(r'^unmode/(\d+)/(\d+)$',action_views.Unmode.as_view()),
     url(r'^rubric/(\d+)$', templ_views.rubric_view),
     url(r'createchetotam/(\d+)$',act_views.CreateArticleView.as_view()),
-    url(r'^registration/$',registration_views.RegistrationView.as_view()),
+    url(r'^registration/$',registration_views.RegistrationView.as_view(),name='registration'),
+    url(r'^registration/check_l/$',registration_views.same_login),
+    url(r'^registration/check_e/$',registration_views.same_email),
+#    url(r'^registration/test/$',registration_views.test_json),
     ]

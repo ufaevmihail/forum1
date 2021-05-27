@@ -26,10 +26,10 @@ import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'i_6es$4a1jef-ortgn$&s4)*kcqurp_k5#yyjfd=ko2fp(47ao')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+#DEBUG = False
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )           ##################
 
-ALLOWED_HOSTS = ['forum1967.herokuapp.com']
+ALLOWED_HOSTS = ['forum1967.herokuapp.com','127.0.0.1']
 '''ROOT = os.path.abspath(os.path.dirname(__file__))   ##
 path = lambda *args: os.path.join(ROOT, *args)      ##
 MEDIA_ROOT = path('static/')                        ##
@@ -147,4 +147,4 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'            #############

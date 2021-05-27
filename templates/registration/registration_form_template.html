@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{% static 'css/base_css1.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/reg.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reg1.css' %}" />
     <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
     <script type="text/javascript" src="{% static 'js/base_js1.js' %}"></script>
@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post">
+<form method="post" class="reg_table" action="/registration/">
     {% csrf_token %}
     <table>
           <tbody>
@@ -21,25 +21,28 @@
                 <td>{{ form.user_name }}</td>
               </tr>
           </tbody>
-          <tbody><tr><td></td><td><div class="errors"><span>error1</span><br><span>error2</span><br></div></td></tr></tbody>
+          <tbody><tr><td></td><td><div class="errors"></div></td></tr></tbody>
           <tbody>
               <tr>
                 <td>{{ form.email.label_tag }}</td>
                 <td>{{ form.email }}</td>
               </tr>
           </tbody>
+          <tbody><tr><td></td><td><div class="errors"></div></td>
           <tbody>
               <tr>
                   <td>{{ form.password.label_tag }}</td>
                   <td>{{ form.password }}</td>
               </tr>
           </tbody>
+          <tbody><tr><td></td><td><div class="errors"></div></td>
           <tbody>
               <tr>
                   <td>{{ form.password_confirm.label_tag }}</td>
                   <td>{{ form.password_confirm }}</td>
               </tr>
           </tbody>
+          <tbody><tr><td></td><td><div class="errors"></div></td>
       </table>
 
       <input class="button" type="submit" value="register">

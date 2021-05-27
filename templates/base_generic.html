@@ -45,7 +45,7 @@
 
       </form>
       {# Assumes you setup the password_reset view in your URLconf #}
-      <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+      <p><a href="{% url 'password_reset' %}">Lost password?</a>  <a href="{% url 'registration' %}">Регистрация</a></p>
     {% endif %}
   </div>
   {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
