@@ -23,7 +23,7 @@ LOGIN_REDIRECT_URL = '/'
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'i_6es$4a1jef-ortgn$&s4)*kcqurp_k5#yyjfd=ko2fp(47ao'
 import os
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'i_6es$4a1jef-ortgn$&s4)*kcqurp_k5#yyjfd=ko2fp(47ao')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
