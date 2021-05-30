@@ -9,6 +9,7 @@ import datetime
 class UserProperties(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     admin = models.BooleanField(default=False)
+    verified=models.BooleanField(default=False)
 
 
 class Rubric(MPTTModel):

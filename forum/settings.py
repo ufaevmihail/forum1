@@ -22,6 +22,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'i_6es$4a1jef-ortgn$&s4)*kcqurp_k5#yyjfd=ko2fp(47ao'
+#o
 import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myforum',
     'mptt',
+ #   'sendemail.apps.SendemailConfig',
 ]
 
 MIDDLEWARE = [
@@ -142,9 +144,17 @@ STATIC_URL = '/static/'
 ]'''
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'michael.ufaev@gmail.com'
+SERVER_EMAIL = 'michael.ufaev@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'michael.ufaev@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'            #############
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'            #############

@@ -19,4 +19,6 @@ urlpatterns = [
     url(r'^registration/check_l/$',registration_views.same_login),
     url(r'^registration/check_e/$',registration_views.same_email),
 #    url(r'^registration/test/$',registration_views.test_json),
+    url(r'^verification/(\d+)/(\S+)',registration_views.verification_view),
+    url(r'^make_verif/(\d+)',registration_views.make_verif),
     ]

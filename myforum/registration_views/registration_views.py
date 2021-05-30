@@ -5,15 +5,23 @@ from forum.forms import RegistrationForm
 from django.views.generic.base import View
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import login
+from django.core.mail import send_mail,EmailMultiAlternatives
+from hashlib import md5
+from django.template.loader import render_to_string
+#from django.template import Context
+#from django.template.loader import get_template
 import re
-#from django.http import JsonResponse
-#from django.forms.models import model_to_dict
 
 
 class RegistrationView(View):
     def get(self,request):
         form = RegistrationForm()
         ctx={'form':form}
+      #  send_verification_email(request.user,request.META['HTTP_HOST'])
+      #  send_mail('Hello', 'World', 'michael.ufaev@gmail.com', ['michael.ufaev@yandex.ru'])
+        #print(request.META)
+        #REMOTE_ADDR
+        #HTTP_HOST
         return render(request,'registration/registration_form_template.html',context=ctx)
 
     def post(self,request):
@@ -31,11 +39,12 @@ class RegistrationView(View):
         userprops = UserProperties()
         user.userproperties=userprops
         user.userproperties.save()
-        user = auth.authenticate(username=username, password=password)
+#
+#        user = auth.authenticate(username=username, password=password)
 #        if user is not None and user.is_active:
-        login(request, user)
-        return HttpResponseRedirect('/main/')
-
+#        login(request, user)
+#
+        return HttpResponseRedirect(f'/make_verif/{user.id}')
 
 
 def same_login(request):
@@ -109,8 +118,50 @@ def has_9(value):
         return True
 
 
+def create_token(user):
+    return md5(user.password[:5].encode()).hexdigest()
 
 
+def send_verification_email(user,domen):
+    token=create_token(user)
+ #   print(domen)
+   # print(type(domen))
+ #   print(token)
+    href= f"http://{domen}/verification/{user.id}/{token}"
+    ctx = {'domen':domen,'user_id':user.id,'token':token,'href':href}
+  #  message = render_to_string('registration/verification_email.html',context=ctx)
+  #  message=template.render(ctx)
+   # send_mail('verification',message,'michael.ufaev@gmail.ru',[user.email])
+    html_content = render_to_string(
+        'registration/verification_email.html',
+        ctx
+    )
+    msg = EmailMultiAlternatives('verification', 'text_content', 'michael.ufaev@gmail.ru', [user.email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+
+def verification_view(request,id,token):
+    user = User.objects.get(pk=id)
+#    print(token)
+    if user.userproperties.verified:
+        return HttpResponseRedirect('/')
+    true_token=create_token(user)
+#    print(true_token)
+    if token == true_token:
+        user.userproperties.verified=True
+        user.userproperties.save()
+        ctx={'success':True}
+        return render(request,'registration/success.html',context=ctx)
+    else:
+        return render(request,'registration/success.html',context={'success':False})
+
+
+def make_verif(request,id):
+    user = User.objects.get(pk=id)
+    send_verification_email(user, request.META['HTTP_HOST'])
+   # return HttpResponseRedirect('/')
+    return render(request,'registration/uvedomlenie.html')
 
 
 

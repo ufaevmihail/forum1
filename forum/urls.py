@@ -21,6 +21,7 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'',include('myforum.urls')),
+ #   path('email/', include('sendemail.urls')),
 ]
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),

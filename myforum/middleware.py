@@ -8,6 +8,7 @@ def LoginFormMiddleware(get_response):
     def process_request(request,*args):
         #print('ffff')
         request.not_found = False
+        request.not_active_user = False
         # if the top login form has been posted
         if request.method == 'POST' and 'logout' in request.POST:
             auth.logout(request)
@@ -20,9 +21,13 @@ def LoginFormMiddleware(get_response):
                 from django.contrib.auth import login
                 user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
                 if user is not None and user.is_active:
-                    login(request, user)
+                    if not user.userproperties.verified:
+                        request.not_active_user = user
+                    else:
+                        login(request, user)
                 else:
                     request.not_found = True
+
 
 
                 # if this is the logout page, then redirect to /

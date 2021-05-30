@@ -36,6 +36,9 @@
         <td>{{ request.login_form.password }}</td>
       </tr>
       </table>
+        {% if request.not_active_user %}
+          <p>Зарегистрируйте почту<a href="/make_verif/{{request.not_active_user.id}}">послать повторно</a></p>
+        {% endif %}
         {%if request.not_found %}
           <p>неверные логин/пароль</p>
         {% endif %}
